@@ -21,13 +21,12 @@
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
-        <receiver android:name=".MyBroadcastReceiver">
-            <intent-filter android:priority="200">
-                <action android:name="com.example.broadcastbestpractice.LOCAL_BROADCAST" />
+        <!--<receiver android:name=".MyBroadcastReceiver">-->
+            <!--<intent-filter android:priority="200">-->
                 <!--<action android:name="com.example.broadcastbestpractice.MY_BROADCAST" />-->
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </receiver>
+                <!--<category android:name="android.intent.category.DEFAULT" />-->
+            <!--</intent-filter>-->
+        <!--</receiver>-->
         <!-- ATTENTION: This was auto-generated to add Google Play services to your project for
              App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information. -->
         <meta-data

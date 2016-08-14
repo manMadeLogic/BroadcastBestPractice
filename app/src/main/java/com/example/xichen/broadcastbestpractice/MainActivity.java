@@ -20,12 +20,14 @@ public class MainActivity extends AppCompatActivity {
 
     private IntentFilter intentFilter = new IntentFilter();
     private LocalReceiver localReceiver = new LocalReceiver();
+    private MyBroadcastReceiver myBroadcastReceiver = new MyBroadcastReceiver();
     private LocalBroadcastManager localBroadcastManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Button button = (Button) findViewById(R.id.button);
+        Button button1 = (Button) findViewById(R.id.button1);
         localBroadcastManager = LocalBroadcastManager.getInstance(this);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -36,23 +38,23 @@ public class MainActivity extends AppCompatActivity {
         });
         intentFilter.addAction("com.example.broadcastbestpractice.LOCAL_BROADCAST");
         localBroadcastManager.registerReceiver(localReceiver, intentFilter);
-        /**
-         * not local
-         *
-         *
-        button.setOnClickListener(new View.OnClickListener() {
+        intentFilter.addAction("com.example.broadcastbestpractice.MY_BROADCAST");
+        localBroadcastManager.registerReceiver(myBroadcastReceiver, intentFilter);
+
+        button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent("com.example.broadcastbestpractice.MY_BROADCAST");
                 sendOrderedBroadcast(intent, null);
             }
-        });*/
+        });
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
         localBroadcastManager.unregisterReceiver(localReceiver);
+        localBroadcastManager.unregisterReceiver(myBroadcastReceiver);
     }
 
     class LocalReceiver extends BroadcastReceiver{
